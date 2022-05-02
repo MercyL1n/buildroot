@@ -780,6 +780,14 @@ endif
 	) >  $(TARGET_DIR)/usr/lib/os-release
 	ln -sf ../usr/lib/os-release $(TARGET_DIR)/etc
 
+	@$(call MESSAGE, "Signing the OPTEE CA's")
+	~/optee/optee/optee_os/scripts/sign-ca.sh ~/optee/optee/out-br/target/usr/bin/optee_example_hello_world ~/optee/optee/out-br/target/usr/bin/optee_example_hello_world
+	~/optee/optee/optee_os/scripts/sign-ca.sh ~/optee/optee/out-br/target/usr/bin/optee_example_secure_storage ~/optee/optee/out-br/target/usr/bin/optee_example_secure_storage
+	~/optee/optee/optee_os/scripts/sign-ca.sh ~/optee/optee/out-br/target/usr/bin/optee_example_secure_storage_copy ~/optee/optee/out-br/target/usr/bin/optee_example_secure_storage_copy
+	~/optee/optee/optee_os/scripts/sign-ca.sh ~/optee/optee/out-br/target/usr/bin/optee_example_random ~/optee/optee/out-br/target/usr/bin/optee_example_random
+	~/optee/optee/optee_os/scripts/sign-ca.sh ~/optee/optee/out-br/target/usr/bin/xtest ~/optee/optee/out-br/target/usr/bin/xtest
+	~/optee/optee/optee_os/scripts/sign-ca.sh ~/optee/optee/out-br/target/usr/sbin/tee-supplicant ~/optee/optee/out-br/target/usr/sbin/tee-supplicant
+
 	@$(call MESSAGE,"Sanitizing RPATH in target tree")
 	PER_PACKAGE_DIR=$(PER_PACKAGE_DIR) $(TOPDIR)/support/scripts/fix-rpath target
 
